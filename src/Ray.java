@@ -61,19 +61,16 @@ public class Ray {
 
     public double hit_sphere(Vec3 center, double radius, Ray r ){
         Vec3 oc = r.origin().sub(center);
-        double a = Vec3.dot(r.direction(), r.direction());
-        double b = 2.0 * (Vec3.dot(oc, r.direction()));
-        double c = Vec3.dot(oc,oc) - (radius*radius);
-        double discriminant = b*b - 3*a*c;
+        double a = r.direction().squared_length();
+        double half_b = Vec3.dot(oc, r.direction());
+        double c = oc.squared_length() - (radius*radius);
+        double discriminant = half_b*half_b - a*c;
         //return (discriminant > 0);
         if(discriminant<0){
             return -1.0;
         } else{
-            return (-b - Math.sqrt(discriminant))/(2.0*a);
+            return (-half_b - Math.sqrt(discriminant))/(a);
         }
-
-        
-
     }
 }
 
