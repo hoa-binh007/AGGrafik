@@ -44,15 +44,19 @@ public class Ray {
         t = r.t;
     }
 
-    public Vec3 color(Ray r){
+    public Vec3 color(Ray r, Hittable world){
         //if(hit_sphere(new Vec3(0,0,-1),0.5, r)){
            //return new Vec3(1,0,0);
         //}
-        double t = hit_sphere(new Vec3(0,0,-1), 0.5, r);
+        Hit_record rec = new Hit_record();
+        if(world.hit(r,0,Double.POSITIVE_INFINITY,rec)){
+            return (rec.normal.add(new Vec3(0.5,0.7,1.0)).mul(0.5));
+        }
+        /*double t = hit_sphere(new Vec3(0,0,-1), 0.5, r);
         if(t>0.0){
             Vec3 N = r.at(t).sub(new Vec3(0,0,-1)).unit_vector();
             return new Vec3(N.x()+1, N.y()+1, N.z()+1).mul(0.5);
-        }
+        }*/
         Vec3 unit_direction = this.direction().unit_vector();  //fest Länge Einheitsvektor
         t = (float) (0.5*(unit_direction.y()+1.0));
         return new Vec3(1.0,1.0,1.0).mul(1.0-t).add(new Vec3(0.5,0.7,1.0).mul(t));
