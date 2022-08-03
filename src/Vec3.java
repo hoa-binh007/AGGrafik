@@ -119,18 +119,24 @@ public class Vec3 {
 
     public void write_color(Vec3 pixel_color, int samples_per_pixel) {
 
-        int ir = (int) (pixel_color.r());
-        int ig = (int) (pixel_color.g());
-        int ib = (int) (pixel_color.b());
+        //int ir = (int) (pixel_color.r());
+        //int ig = (int) (pixel_color.g());
+        //int ib = (int) (pixel_color.b());
         // Divide the color by the number of samples
         double scale = 1.0 / samples_per_pixel;
-        ir *= scale;
-        ig *= scale;
-        ib *= scale;
+        //ir *= scale;
+        //ig *= scale;
+        //ib *= scale;
+
+        int ir = (int) (256.0*clamp(pixel_color.r() * scale,0.0, 0.999));
+        int ig = (int) (256.0*clamp(pixel_color.g() * scale,0.0, 0.999));
+        int ib = (int) (256.0*clamp(pixel_color.b() * scale,0.0, 0.999));
+
         //Write the translated [0,255] value of each color component.
-        System.out.println(256 * clamp(ir, 0.0, 0.999));
-        System.out.println(" " + 256 * clamp(ig, 0.0, 0.999));
-        System.out.println(" " + (256 * clamp(ib, 0.0, 0.999)) + " " + "\n");
+        //System.out.println(256 * clamp(ir, 0.0, 0.999));
+        //System.out.println(" " + 256 * clamp(ig, 0.0, 0.999));
+        //System.out.println(" " + (256 * clamp(ib, 0.0, 0.999)) + " " + "\n");
+        System.out.println(ir + "" + ig + "" + ib);
     }
 
     public double random_double(double min, double max) {

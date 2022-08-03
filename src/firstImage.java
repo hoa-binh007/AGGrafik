@@ -42,10 +42,11 @@ public class firstImage {
                     double v = (double) (j+ Math.random()) /(image_height-1);
                     Ray r = cam.get_ray(u,v);
                     pixel_color = r.color(r,world).add(pixel_color);
-                    pixel_color.write_color(pixel_color, samples_per_pixel);
+
 
 
                 }
+                pixel_color.write_color(pixel_color, samples_per_pixel);
 
 
 
@@ -73,7 +74,9 @@ public class firstImage {
                  */
             }
         }
-        System.out.println("\nDone.\n");
+        //System.out.println("\nDone.\n");
+          System.err.println("\nDone.\n");
+
 
 
     }

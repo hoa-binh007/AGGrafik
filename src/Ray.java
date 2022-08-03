@@ -51,7 +51,11 @@ public class Ray {
         Hit_record rec = new Hit_record();
         if(world.hit(r,0,Double.POSITIVE_INFINITY,rec)){
             Vec3 target = rec.p.add(rec.normal).add(Vec3.random_in_unit_sphere());
-            return color(new Ray(rec.p,target.sub(rec.p)), world).mul(0.5);
+            //return color(new Ray(rec.p,target.sub(rec.p)), world).mul(0.5);
+            Vec3 dir = target.sub(rec.p);
+            return color(new Ray(rec.p.add(dir.mul(0.01)), dir), world).mul(0.5);
+            //return color(new Ray(rec.p.add(dir.mul(0.01)), dir), world).mul(0.5);
+
             //return (rec.normal.add(new Vec3(0.5,0.7,1.0)).mul(0.5));
         }
         /*double t = hit_sphere(new Vec3(0,0,-1), 0.5, r);
