@@ -8,7 +8,7 @@ public class Dielectric implements Material{
 
     @Override
     public boolean scatter(Ray r_in, Hit_record rec, Vec3 attenuation, Ray scattered) {
-        new Vec3(1.0, 1.0, 1.0);
+        attenuation.set(new Vec3(1.0, 1.0, 1.0));
         double refraction_ratio;
         if(rec.front_face) {
             refraction_ratio = 1.0 / ir;
