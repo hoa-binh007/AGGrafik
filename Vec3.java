@@ -169,7 +169,12 @@ public class Vec3 {
         System.out.println(ir + " " + ig + " " + ib);
     }
 
-    public double random_double(double min, double max) {
+    public static double random_double() {
+        //Return a random real in [0,1]
+        return Math.random();
+    }
+
+    public static double random_double(double min, double max) {
         //Return a random real in [min, max]
         return min + (max - min) * Math.random();
     }
