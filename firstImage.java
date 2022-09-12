@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class firstImage {
 
     public static void main(String[] args) {
@@ -12,21 +10,38 @@ public class firstImage {
         int max_depth = 50;
 
         //World
+        double R = Math.cos(Math.PI/4);
         HittableList world = new HittableList();
+
+        //Lambertian material_left = new Lambertian(new Vec3(0,0,1));
+        //Lambertian material_right = new Lambertian(new Vec3(1,0,0));
+
         Lambertian material_ground = new Lambertian(new Vec3(0.8,0.8,0.0));
-        Dielectric material_center = new Dielectric(1.5);
+        Lambertian material_center = new Lambertian(new Vec3(0.1,0.2,0.5));
+        Dielectric material_left = new Dielectric(1.5);
+        Metal material_right = new Metal(new Vec3(0.8,0.6,0.2),0.0);
+
+
+        //Dielectric material_center = new Dielectric(1.5);
         //Lambertian material_center = new Lambertian(new Vec3(0.7,0.3,0.3));
         //Metal material_left = new Metal(new Vec3(0.8,0.8,0.8),0.3);
-        Dielectric material_left = new Dielectric(1.5);
-        Metal material_right = new Metal(new Vec3(0.8,0.6,0.2),1.0);
+        //Dielectric material_left = new Dielectric(1.5);
+        //Metal material_right = new Metal(new Vec3(0.8,0.6,0.2),0.0);
+
+        //world.add(new Sphere(new Vec3(0.0,-100.5,-1.0), 100.0, material_ground));
+        //world.add(new Sphere(new Vec3(0.0,0.0,-1.0), 0.5, material_center));
+        //world.add(new Sphere(new Vec3(-1.0,0.0,-1.0), 0.5, material_left));
 
         world.add(new Sphere(new Vec3(0.0,-100.5,-1.0), 100.0, material_ground));
         world.add(new Sphere(new Vec3(0.0,0.0,-1.0), 0.5, material_center));
         world.add(new Sphere(new Vec3(-1.0,0.0,-1.0), 0.5, material_left));
-        world.add(new Sphere(new Vec3(1.0,0.0,-1.0), 0.5, material_right));
+        world.add(new Sphere(new Vec3(-R,0.0,-1.0), -0.45, material_left));
+        world.add(new Sphere(new Vec3(R,0.0,-1.0), 0.5, material_right));
 
         //Camera
-        Camera cam = new Camera();
+       //Camera cam = new Camera(90.0,aspect_ratio);
+        //Camera cam = new Camera(new Vec3(-2,2,1),new Vec3(0,0,-1),new Vec3(0,1,0),90,aspect_ratio);
+        Camera cam = new Camera(new Vec3(-2,2,1),new Vec3(0,0,-1),new Vec3(0,1,0),20,aspect_ratio);
 
         /*double viewport_height = 2.0;
         double viewport_width = aspect_ratio * viewport_height;
