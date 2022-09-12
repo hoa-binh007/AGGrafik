@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class firstImage {
 
     public static void main(String[] args) {
@@ -14,14 +12,16 @@ public class firstImage {
         //World
         HittableList world = new HittableList();
         Lambertian material_ground = new Lambertian(new Vec3(0.8,0.8,0.0));
-        Dielectric material_center = new Dielectric(1.5);
+        Lambertian material_center = new Lambertian(new Vec3(0.1,0.2,0.5));
+        //Dielectric material_center = new Dielectric(1.5);
         //Lambertian material_center = new Lambertian(new Vec3(0.7,0.3,0.3));
         //Metal material_left = new Metal(new Vec3(0.8,0.8,0.8),0.3);
         Dielectric material_left = new Dielectric(1.5);
-        Metal material_right = new Metal(new Vec3(0.8,0.6,0.2),1.0);
+        Metal material_right = new Metal(new Vec3(0.8,0.6,0.2),0.0);
 
         world.add(new Sphere(new Vec3(0.0,-100.5,-1.0), 100.0, material_ground));
         world.add(new Sphere(new Vec3(0.0,0.0,-1.0), 0.5, material_center));
+        //world.add(new Sphere(new Vec3(-1.0,0.0,-1.0), 0.5, material_left));
         world.add(new Sphere(new Vec3(-1.0,0.0,-1.0), 0.5, material_left));
         world.add(new Sphere(new Vec3(1.0,0.0,-1.0), 0.5, material_right));
 
