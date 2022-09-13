@@ -212,6 +212,20 @@ public class Vec3 {
             }
     }
 
+    //Generate random point inside unit disk
+    public static Vec3 random_in_unit_disk(){
+        while (true){
+            Vec3 p = new Vec3(random_double(-1,1), random_double(-1,1), 0);
+            if(p.squared_length()>=1){
+                continue;
+            }
+            else {
+                return p;
+            }
+        }
+    }
+
+
     public boolean near_zero(){
         //Return true if the vector is close to zero in all dimensions
         float s = -1e8F;

@@ -35,13 +35,19 @@ public class firstImage {
         world.add(new Sphere(new Vec3(0.0,-100.5,-1.0), 100.0, material_ground));
         world.add(new Sphere(new Vec3(0.0,0.0,-1.0), 0.5, material_center));
         world.add(new Sphere(new Vec3(-1.0,0.0,-1.0), 0.5, material_left));
-        world.add(new Sphere(new Vec3(-R,0.0,-1.0), -0.45, material_left));
+        world.add(new Sphere(new Vec3(-R,0.0,-1.0), 0.05, material_left));
         world.add(new Sphere(new Vec3(R,0.0,-1.0), 0.5, material_right));
 
         //Camera
        //Camera cam = new Camera(90.0,aspect_ratio);
         //Camera cam = new Camera(new Vec3(-2,2,1),new Vec3(0,0,-1),new Vec3(0,1,0),90,aspect_ratio);
-        Camera cam = new Camera(new Vec3(-2,2,1),new Vec3(0,0,-1),new Vec3(0,1,0),20,aspect_ratio);
+        Vec3 lookfrom = new Vec3(3,3,2);
+        Vec3 lookat = new Vec3(0,0,-1);
+        Vec3 vup = new Vec3(0,1,0);
+        double dist_to_focus = (lookfrom.sub(lookat).length());
+        double aperture = 2.0;
+        Camera cam = new Camera(lookfrom,lookat,vup,20,aspect_ratio,aperture,dist_to_focus);
+        //Camera cam = new Camera(new Vec3(-2,2,1),new Vec3(0,0,-1),new Vec3(0,1,0),20,aspect_ratio);
 
         /*double viewport_height = 2.0;
         double viewport_width = aspect_ratio * viewport_height;
@@ -50,8 +56,8 @@ public class firstImage {
         Vec3 origin = new Vec3(0,0,0);   //wo ist der Nullpunkt
         Vec3 horizontal = new Vec3(viewport_width,0,0); //bezieht sich die Camera
         Vec3 vertical = new Vec3(0,viewport_height,0);
-        Vec3 lower_left_corner = origin.sub(horizontal.div(2)).sub(vertical.div(2)).sub(new Vec3(0,0,focal_length)); //Koordinaten links unten
-        */
+            Vec3 lower_left_corner = origin.sub(horizontal.div(2)).sub(vertical.div(2)).sub(new Vec3(0,0,focal_length)); //Koordinaten links unten
+            */
 
         //Render
 
